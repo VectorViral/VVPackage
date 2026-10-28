@@ -26,30 +26,11 @@ namespace VectorViral.Sound
             this.audioSource.volume = 0;
         }
 
-        private void OnEnable()
-        {
-#if MR_REMOTE_CONFIGURATIONS
-            MRRemoteConfigurationsManager.OnRemoteConfigReady += Initialize;
-#endif
-        }
-
-        private void OnDisable()
-        {
-#if MR_REMOTE_CONFIGURATIONS
-            MRRemoteConfigurationsManager.OnRemoteConfigReady -= Initialize;
-#endif
-        }
+   
 
         private void Start()
         {
-#if MR_REMOTE_CONFIGURATIONS
-            if (MRRemoteConfigurationsManager.Instance)
-            {
-                if (MRRemoteConfigurationsManager.Instance.IsRemoteConfigReady())
-                    Initialize();
-            }
-            else
-#endif
+ 
             Initialize();
         }
 
@@ -113,4 +94,5 @@ namespace VectorViral.Sound
 
     // Backward-compatibility alias for existing scripts and prefabs
     public class MRSoundManager : VVSoundManager { }
-}
+}
+

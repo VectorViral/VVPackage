@@ -1,4 +1,3 @@
-#if MR_SOUND
 namespace VectorViral.Sound
 {
 	public class MRSounds {
@@ -11,4 +10,3 @@ namespace VectorViral.Sound
 		public static string Vinyl_Sound = "Vinyl_Sound";
 	}
 }
-#endif

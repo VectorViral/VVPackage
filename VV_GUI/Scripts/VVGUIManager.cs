@@ -4,7 +4,6 @@
 // Licensed under the MIT Open Source License.
 // ==============================================================================
 
-#if MR_GUI
 namespace VectorViral.GUI
 {
     using UnityEngine;
@@ -87,30 +86,10 @@ namespace VectorViral.GUI
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
 
-        private void OnEnable()
-        {
-#if MR_REMOTE_CONFIGURATIONS
-            MRRemoteConfigurationsManager.OnRemoteConfigReady += StartGUI;
-#endif
-        }
-
-        private void OnDisable()
-        {
-#if MR_REMOTE_CONFIGURATIONS
-            MRRemoteConfigurationsManager.OnRemoteConfigReady -= StartGUI;
-#endif
-        }
-
+      
         private void Start()
         {
-#if MR_REMOTE_CONFIGURATIONS
-            if (MRRemoteConfigurationsManager.Instance)
-            {
-                if (MRRemoteConfigurationsManager.Instance.IsRemoteConfigReady())
-                    StartGUI();
-            }
-            else
-#endif
+ 
                 StartGUI();
         }
 
@@ -237,10 +216,7 @@ namespace VectorViral.GUI
             currentScreen.onShow.Invoke();
             currentScreen.Show();
 
-#if MR_ANALYTICS
-            if (MRAnalyticsManager.Instance)
-                MRAnalyticsManager.Instance.LogScreenView(currentScreen.screenName, source);
-#endif
+ 
         }
 
         public void Back(GUIEvent onCompleted = null)
@@ -375,5 +351,4 @@ namespace VectorViral.GUI
 
     // Backwards compatibility alias
     public class MRGUIManager : VVGUIManager { }
-}
-#endif
+}

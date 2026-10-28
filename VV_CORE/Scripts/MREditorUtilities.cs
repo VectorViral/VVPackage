@@ -107,7 +107,10 @@ namespace VectorViral.Core
         /// <returns></returns>
         public static string GetAssetPathByFilter(string filter)
         {
-            return AssetDatabase.GUIDToAssetPath(AssetDatabase.FindAssets(filter).ToList()[0]);
+            string[] guids = AssetDatabase.FindAssets(filter);
+            if (guids != null && guids.Length > 0)
+                return AssetDatabase.GUIDToAssetPath(guids[0]);
+            return string.Empty;
         }
     }
 }

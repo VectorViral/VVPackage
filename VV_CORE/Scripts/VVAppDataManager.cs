@@ -1,8 +1,6 @@
 namespace VectorViral.Core
 {
-#if MR_CORE
     using Newtonsoft.Json;
-#endif
     using UnityEngine;
 
     public class VVAppDataManager : MonoBehaviour
@@ -24,13 +22,7 @@ namespace VectorViral.Core
             }
 
             DontDestroyOnLoad(this.gameObject);
-
-#if MR_REMOTE_CONFIGURATIONS
-            if (FindObjectOfType<MRRemoteConfigurationsManager>() == null)
-                Initialize();
-#else
             Initialize();
-#endif
         }
 
         public void Initialize()
@@ -38,19 +30,29 @@ namespace VectorViral.Core
             if (PlayerPrefs.HasKey(appDataKey))
             {
                 string jsonSaved = PlayerPrefs.GetString(appDataKey);
-#if MR_CORE
-                app = JsonConvert.DeserializeObject<MRApp>(PlayerPrefs.GetString(appDataKey));
-#endif
+                if (!string.IsNullOrEmpty(jsonSaved))
+                {
+                    try
+                    {
+                        app = JsonConvert.DeserializeObject<MRApp>(jsonSaved);
+                    }
+                    catch (System.Exception ex)
+                    {
+                        Debug.LogWarning("VVAppDataManager: Failed to parse saved app data: " + ex.Message);
+                        app = new MRApp();
+                        app.Initialize();
+                    }
+                }
+                else
+                {
+                    app = new MRApp();
+                    app.Initialize();
+                }
             }
             else
             {
                 app = new MRApp();
                 app.Initialize();
-                SaveAppData();
-
-#if MR_ANALYTICS
-                MRAnalyticsManager.Instance.LogEvent("appDownload");
-#endif
             }
 
             SaveAppData();
@@ -58,24 +60,20 @@ namespace VectorViral.Core
 
         public void SaveAppData()
         {
-#if MR_REMOTE_CONFIGURATIONS
-            if (MRRemoteConfigurationsManager.Instance)
-            {
-                if (MRRemoteConfigurationsManager.Instance.IsRemoteConfigReady())
-                    SerializeAndSave();
-            }
-            else
-#endif
-                SerializeAndSave();
+            SerializeAndSave();
         }
 
         void SerializeAndSave()
         {
-#if MR_CORE
-            string jsonString = JsonConvert.SerializeObject(app);
-            if (!jsonString.Contains("null"))
-                PlayerPrefs.SetString(appDataKey, JsonConvert.SerializeObject(app));
-#endif
+            if (app != null)
+            {
+                string jsonString = JsonConvert.SerializeObject(app);
+                if (!string.IsNullOrEmpty(jsonString) && !jsonString.Contains("null"))
+                {
+                    PlayerPrefs.SetString(appDataKey, jsonString);
+                    PlayerPrefs.Save();
+                }
+            }
         }
 
         public MRApp GetAppInstance()
@@ -86,4 +84,4 @@ namespace VectorViral.Core
 
     // Backward-compatibility alias for existing scripts and prefabs
     public class MRAppDataManager : VVAppDataManager { }
-}
+}

@@ -6,7 +6,7 @@ namespace VectorViral.GUI
 {
     public static class MRGUIConstants
     {
-        public static string MR_GUI_LOGO = "Assets/VVPackage/MR_GUI/Sprites/logo-mrgui.png";
+        public static string MR_GUI_LOGO = "Assets/VVPackage/VV_GUI/Sprites/logo-mrgui.png";
         public static string MR_SCREENS_FILE_ASSET_FILTER = "MRScreens t:script";
         public static string MR_SCREENS_FILENAME = "MRScreens.cs";
         public static string NEW_MR_SCREEN_PREFIX = "MRScreen_";

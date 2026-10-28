@@ -56,13 +56,13 @@ namespace VectorViral.Core
         public static string FILE_ALREADY_EXISTS_IN_PROJECT = " File already exists in the project!";
         public static string DASHED_LINE = "-----------------------------------------------\n";
 
-        public static string MR_CORE_LOGO = "Assets/VVPackage/MR_CORE/Sprites/logo-mrcore.png";
-        public static string MR_TICK_ICON = "Assets/VVPackage/MR_CORE/Sprites/icon-tick.png";
-        public static string MR_CROSS_ICON = "Assets/VVPackage/MR_CORE/Sprites/icon-cross.png";
-        public static string MR_EXPORT_ICON = "Assets/VVPackage/MR_CORE/Sprites/icon-export.png";
-        public static string MR_PLUS_ICON = "Assets/VVPackage/MR_CORE/Sprites/icon-plus.png";
-        public static string ICON_DELETE = "Assets/VVPackage/MR_CORE/Sprites/icon-delete.png";
-        public static string ICON_PIN = "Assets/VVPackage/MR_CORE/Sprites/icon-pin.png";
+        public static string MR_CORE_LOGO = "Assets/VVPackage/VV_CORE/Sprites/logo-mrcore.png";
+        public static string MR_TICK_ICON = "Assets/VVPackage/VV_CORE/Sprites/icon-tick.png";
+        public static string MR_CROSS_ICON = "Assets/VVPackage/VV_CORE/Sprites/icon-cross.png";
+        public static string MR_EXPORT_ICON = "Assets/VVPackage/VV_CORE/Sprites/icon-export.png";
+        public static string MR_PLUS_ICON = "Assets/VVPackage/VV_CORE/Sprites/icon-plus.png";
+        public static string ICON_DELETE = "Assets/VVPackage/VV_CORE/Sprites/icon-delete.png";
+        public static string ICON_PIN = "Assets/VVPackage/VV_CORE/Sprites/icon-pin.png";
         public static string PACKAGE_INFO_URL = "Assets/VVPackage/{}/packageInfo.asset";
         public static string RELEASE_NOTES_FILE_URL = "Assets/VVPackage/{}/releaseNotes.txt";
     }
