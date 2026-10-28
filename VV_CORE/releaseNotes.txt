@@ -1,0 +1,6 @@
+VVPackage - Core, GUI & Audio Architecture
+Developed by VECTOR VIRAL (SMC-PRIVATE) LIMITED
+Release Version: 2.2.0 (LTS)
+- Production-ready modular architecture for Unity 2022.3 LTS and Android 16 (API Level 36).
+- High performance GUI state management, screen transitions, and audio pipelines.
+- Distributed under the permissive Open-Source MIT License.

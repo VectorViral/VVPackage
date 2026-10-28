@@ -1,0 +1,13 @@
+{
+  "name": "com.vectorviral.vvpackage",
+  "version": "2.2.0",
+  "displayName": "VVPackage Framework",
+  "description": "Core, GUI, Audio and State Management Architecture for Unity by VECTOR VIRAL (SMC-PRIVATE) LIMITED.",
+  "unity": "2022.3",
+  "author": {
+    "name": "VECTOR VIRAL (SMC-PRIVATE) LIMITED",
+    "email": "contact@vectorviral.com",
+    "url": "https://github.com/vectorviral"
+  },
+  "license": "MIT"
+}

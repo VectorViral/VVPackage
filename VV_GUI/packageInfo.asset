@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab01613d93fa4ed1a6d6423bbcd6f9d, type: 3}
+  m_Name: packageInfo
+  m_EditorClassIdentifier: 
+  displayName: VV GUI
+  folderName: MR_GUI
+  version: 2.2.6
+  information: Handles the creation of all screens and panels of the app, Navigation
+    made easy. MRGUIManager is the brain API
+  exportName: vv-gui-package-
+  exports:
+  - Assets/VVPackage/MR_GUI
+  dependencies: []

@@ -1,0 +1,22 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+*.tmp
+*.log
+
+# Unity generated files (if opened standalone)
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]ser[Ss]ettings/
+/[Mm]emoryCaptures/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.csproj
+*.unityproj
+*.sln
