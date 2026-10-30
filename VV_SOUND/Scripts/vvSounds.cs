@@ -1,6 +1,6 @@
 namespace VectorViral.Sound
 {
-	public class MRSounds {
+	public class vvSounds {
 		public static string BoostersClick = "BoostersClick";
 		public static string ButtonClick = "ButtonClick";
 		public static string DriftSound = "DriftSound";

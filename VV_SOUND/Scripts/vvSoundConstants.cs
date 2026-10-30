@@ -1,7 +1,7 @@
  
 namespace VectorViral.Sound
 {
-    public static class MRSoundConstants
+    public static class vvSoundConstants
     {
         public static string MR_SOUND_LOGO = "Assets/VVPackage/VV_SOUND/Sprites/logo-mrsound.png";
         

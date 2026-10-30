@@ -1,4 +1,9 @@
- 
+// ==============================================================================
+// VVPackage - Modular UI, Sound & Core Framework
+// Copyright (c) 2024-2026 VECTOR VIRAL (SMC-PRIVATE) LIMITED
+// Licensed under the MIT Open Source License.
+// ==============================================================================
+
 #if UNITY_EDITOR
 namespace VectorViral.Core
 {
@@ -9,7 +14,7 @@ namespace VectorViral.Core
     using UnityEngine;
     using UnityEngine.Events;
 
-    public static class MREditorUtilities
+    public static class VVEditorUtilities
     {
         [MenuItem("VVPackage/VV Editor Utilities/Delete Preferences %#-")]
         static void DeletePreferences()
@@ -18,7 +23,7 @@ namespace VectorViral.Core
             PlayerPrefs.Save();
 
             Caching.ClearCache();
-            Debug.Log("MREditorUtilities: Preferences Deleted");
+            Debug.Log("VVEditorUtilities: Preferences Deleted");
         }
 
         public static GUIStyle GetLabelStyle(GUIStyle gs, Color color, int fontSize = 12, int paddingLeft = 0)
@@ -93,7 +98,7 @@ namespace VectorViral.Core
         /// <summary>
         /// Returns the list of guids of all the script files that match the script name. Don't supply the extension
         /// </summary>
-        /// <param name="scriptName"></param>
+        /// <param name="filter"></param>
         /// <returns></returns>
         public static List<string> GetAssetGuidsByFilter(string filter)
         {
@@ -103,7 +108,7 @@ namespace VectorViral.Core
         /// <summary>
         /// Returns the path of the first asset that's found on the filter
         /// </summary>
-        /// <param name="scriptName"></param>
+        /// <param name="filter"></param>
         /// <returns></returns>
         public static string GetAssetPathByFilter(string filter)
         {
@@ -112,6 +117,19 @@ namespace VectorViral.Core
                 return AssetDatabase.GUIDToAssetPath(guids[0]);
             return string.Empty;
         }
+    }
+
+    // Backward-compatibility alias
+    public static class MREditorUtilities
+    {
+        public static GUIStyle GetLabelStyle(GUIStyle gs, Color color, int fontSize = 12, int paddingLeft = 0) => VVEditorUtilities.GetLabelStyle(gs, color, fontSize, paddingLeft);
+        public static void CreateIconButton(Texture2D icon, int width, int height, UnityAction onClicked) => VVEditorUtilities.CreateIconButton(icon, width, height, onClicked);
+        public static void DrawColoredSeparator(Color color, float height) => VVEditorUtilities.DrawColoredSeparator(color, height);
+        public static List<T> GetAssetsByType<T>(string optionalNamespace = "") where T : Object => VVEditorUtilities.GetAssetsByType<T>(optionalNamespace);
+        public static List<Object> GetAssetsByFilter(string filter) => VVEditorUtilities.GetAssetsByFilter(filter);
+        public static bool IsStringInLines(List<string> lines, string s) => VVEditorUtilities.IsStringInLines(lines, s);
+        public static List<string> GetAssetGuidsByFilter(string filter) => VVEditorUtilities.GetAssetGuidsByFilter(filter);
+        public static string GetAssetPathByFilter(string filter) => VVEditorUtilities.GetAssetPathByFilter(filter);
     }
 }
 #endif

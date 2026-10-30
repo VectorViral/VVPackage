@@ -9,7 +9,7 @@ namespace VectorViral.Sound
         [SerializeField] bool dontDestroyOnLoad = false;
 
         AudioSource audioSource;
-        [SerializeField] List<MRSound> mrSounds;
+        [SerializeField] List<vvSound> mrSounds;
         public static VVSoundManager Instance = null;
 
         void Awake()
@@ -67,7 +67,7 @@ namespace VectorViral.Sound
 
         public void Play(string uniqueName, bool oneShot = true)
         {
-            MRSound sound = this.mrSounds.Find(p => p.uniqueName == uniqueName);
+            vvSound sound = this.mrSounds.Find(p => p.uniqueName == uniqueName);
             PlaySound(sound, oneShot);
         }
 
@@ -76,7 +76,7 @@ namespace VectorViral.Sound
             this.audioSource.Stop();
         }
 
-        void PlaySound(MRSound sound, bool oneShot)
+        void PlaySound(vvSound sound, bool oneShot)
         {
             if (sound != null)
             {

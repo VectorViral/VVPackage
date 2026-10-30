@@ -55,30 +55,30 @@ public class MySandMManger : MonoBehaviour
 
     public void ButtonClickSound_Func()
     {
-        MRSoundManager.Instance.Play(MRSounds.ButtonClick);
+        MRSoundManager.Instance.Play(vvSounds.ButtonClick);
     }
     public void DriftSound_Func()
     {
-        MRSoundManager.Instance.Play(MRSounds.DriftSound);
+        MRSoundManager.Instance.Play(vvSounds.DriftSound);
     }
     public void GameOverSound_Func()
     {
-        MRSoundManager.Instance.Play(MRSounds.GameOver_Sound);
+        MRSoundManager.Instance.Play(vvSounds.GameOver_Sound);
     }
     public void PopUpOpenSound_Func()
     {
-        MRSoundManager.Instance.Play(MRSounds.PopUp_Sound);
+        MRSoundManager.Instance.Play(vvSounds.PopUp_Sound);
     }
     public void PopUpCloseSound_Func()
     {
-        MRSoundManager.Instance.Play(MRSounds.PopUpClose_Sound);
+        MRSoundManager.Instance.Play(vvSounds.PopUpClose_Sound);
     }
     public void VinylPickSound_Func()
     {
-        MRSoundManager.Instance.Play(MRSounds.Vinyl_Sound);
+        MRSoundManager.Instance.Play(vvSounds.Vinyl_Sound);
     }
     public void boostersClickSound_Func()
     {
-        MRSoundManager.Instance.Play(MRSounds.BoostersClick);
+        MRSoundManager.Instance.Play(vvSounds.BoostersClick);
     }
 }

@@ -8,18 +8,16 @@ namespace VectorViral.GUI
 {
     using UnityEngine;
     using System.Collections.Generic;
-    using DG.Tweening;
+    using VectorViral.Tweening;
     using UnityEngine.UI;
     using VectorViral.Core;
- 
- 
 
     public class VVGUIManager : MonoBehaviour
     {
-        [Tooltip("Serialized references to MRScreen components in the scene to avoid expensive runtime search.")]
-        [SerializeField] private List<MRScreen> screens = new List<MRScreen>();
-        Stack<MRScreen> stack = new Stack<MRScreen>();
-        MRScreen currentScreen = null;
+        [Tooltip("Serialized references to VVScreen components in the scene to avoid expensive runtime search.")]
+        [SerializeField] private List<VVScreen> screens = new List<VVScreen>();
+        Stack<VVScreen> stack = new Stack<VVScreen>();
+        VVScreen currentScreen = null;
         public delegate void GUIEvent();
         public float transitionSmoothness = 0.25f;
         GameObject blocker;
@@ -42,15 +40,15 @@ namespace VectorViral.GUI
             if (screens == null || screens.Count == 0)
             {
 #if UNITY_2023_1_OR_NEWER
-                screens = new List<MRScreen>(FindObjectsByType<MRScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None));
+                screens = new List<VVScreen>(FindObjectsByType<VVScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None));
 #elif UNITY_2020_1_OR_NEWER
-                screens = new List<MRScreen>(FindObjectsOfType<MRScreen>(true));
+                screens = new List<VVScreen>(FindObjectsOfType<VVScreen>(true));
 #else
-                screens = new List<MRScreen>(FindObjectsOfType(typeof(MRScreen)) as MRScreen[]);
+                screens = new List<VVScreen>(FindObjectsOfType(typeof(VVScreen)) as VVScreen[]);
 #endif
             }
 
-            foreach (MRScreen screen in screens)
+            foreach (VVScreen screen in screens)
             {
                 if (screen != null && screen.container != null)
                     screen.container.SetActive(false);
@@ -58,7 +56,7 @@ namespace VectorViral.GUI
 
             blocker = new GameObject();
             blocker.transform.parent = this.transform;
-            blocker.name = "MRGUIBlockerCanvas";
+            blocker.name = "VVGUIBlockerCanvas";
             blocker.AddComponent<Canvas>();
             blocker.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             blocker.GetComponent<Canvas>().sortingOrder = 1000;
@@ -67,7 +65,7 @@ namespace VectorViral.GUI
             blocker.SetActive(false);
 
             GameObject i = new GameObject();
-            i.name = "MRGUIBlockerImage";
+            i.name = "VVGUIBlockerImage";
             i.transform.parent = blocker.transform;
             i.transform.ResetTransformation();
             i.AddComponent<Image>();
@@ -86,37 +84,30 @@ namespace VectorViral.GUI
             Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
 
-      
         private void Start()
         {
- 
-                StartGUI();
+            StartGUI();
         }
-
-     
 
         private void StartGUI()
         {
             if (isGUIStarted) return;
             isGUIStarted = true;
 
-            foreach (MRScreen screen in screens)
+            foreach (VVScreen screen in screens)
                 screen.gameObject.SetActive(false);
 
             stack.Clear();
-            MRScreen firstScreen = screens.Find(p => p.isFirstScreen);
+            VVScreen firstScreen = screens.Find(p => p.isFirstScreen);
             if (firstScreen != null)
             {
                 stack.Push(firstScreen);
                 ShowStackPeek();
             }
-
-          
         }
 
         public void Open(string screenName, GUIEvent onComplete)
         {
-        
             source = "";
             if (currentScreen != null)
                 source = currentScreen.screenName;
@@ -124,7 +115,7 @@ namespace VectorViral.GUI
             if (currentScreenName == screenName)
                 return;
 
-            MRScreen screenToOpen = screens.Find(p => p.GetComponent<MRScreen>().screenName == screenName);
+            VVScreen screenToOpen = screens.Find(p => p.GetComponent<VVScreen>().screenName == screenName);
             if (screenToOpen != null)
             {
                 screenToOpen.container.SetActive(false);
@@ -147,7 +138,7 @@ namespace VectorViral.GUI
                 Debug.LogError(screenName + " Screen Not Detected By VVGUIManager");
         }
 
-        void OpenWorker(MRScreen screen, bool closePrevious, GUIEvent onComplete)
+        void OpenWorker(VVScreen screen, bool closePrevious, GUIEvent onComplete)
         {
             if (closePrevious)
             {
@@ -161,23 +152,20 @@ namespace VectorViral.GUI
             ShowStackPeek();
             if (onComplete != null)
                 onComplete();
-          
         }
 
         void ShowStackPeek()
         {
             currentScreen = stack.Peek();
 
-
-
             float introFadeTime =
                 currentScreen.hasIntroSmoothness ?
-                    currentScreen.overrideSmoothness?
+                    currentScreen.overrideSmoothness ?
                     currentScreen.overrideSmoothnessValue : transitionSmoothness :
                 0f;
 
             currentScreen.container.GetComponent<CanvasGroup>().DOFade(1f, introFadeTime);
-            if (currentScreen.introAnimation == MRScreenAnimationType.None)
+            if (currentScreen.introAnimation == VVScreenAnimationType.None)
                 currentScreen.container.transform.localPosition = Vector3.zero;
             else
             {
@@ -189,13 +177,13 @@ namespace VectorViral.GUI
                 float maxY = (canvasRect.sizeDelta.y - rect.sizeDelta.y);
 
                 Vector3 pos = currentScreen.container.transform.localPosition;
-                if (currentScreen.introAnimation == MRScreenAnimationType.RTL)
+                if (currentScreen.introAnimation == VVScreenAnimationType.RTL)
                     pos.x = maxX;
-                else if (currentScreen.introAnimation == MRScreenAnimationType.LTR)
+                else if (currentScreen.introAnimation == VVScreenAnimationType.LTR)
                     pos.x = minX;
-                else if (currentScreen.introAnimation == MRScreenAnimationType.Drop)
+                else if (currentScreen.introAnimation == VVScreenAnimationType.Drop)
                     pos.y = maxY;
-                else if (currentScreen.introAnimation == MRScreenAnimationType.Rise)
+                else if (currentScreen.introAnimation == VVScreenAnimationType.Rise)
                     pos.y = minY;
 
                 currentScreen.container.transform.DOLocalMove(pos, 0f);
@@ -215,14 +203,10 @@ namespace VectorViral.GUI
             currentScreen.container.SetActive(true);
             currentScreen.onShow.Invoke();
             currentScreen.Show();
-
- 
         }
 
         public void Back(GUIEvent onCompleted = null)
         {
-           
-
             source = "";
             if (currentScreen != null)
                 source = currentScreen.screenName;
@@ -236,7 +220,7 @@ namespace VectorViral.GUI
             }
         }
 
-        public MRScreen GetScreenByName(string name)
+        public VVScreen GetScreenByName(string name)
         {
             return this.screens.Find(p => p.screenName == name);
         }
@@ -245,7 +229,7 @@ namespace VectorViral.GUI
         {
             isGUIStarted = false;
 
-            foreach (MRScreen screen in screens)
+            foreach (VVScreen screen in screens)
             {
                 if (screen.container != null)
                     screen.container.SetActive(false);
@@ -256,8 +240,6 @@ namespace VectorViral.GUI
 
         public void Close(GUIEvent onCompleted = null)
         {
-            Debug.Log("C L O S E");
-
             source = "";
             if (currentScreen != null)
                 source = currentScreen.screenName;
@@ -284,8 +266,6 @@ namespace VectorViral.GUI
 
                 if (onCompleted != null)
                     onCompleted.Invoke();
-
-                
             });
         }
 
@@ -303,9 +283,9 @@ namespace VectorViral.GUI
             }
         }
 
-        public MRScreen GetCurrentScreen()
+        public VVScreen GetCurrentScreen()
         {
-            if(currentScreen == null)
+            if (currentScreen == null)
                 Debug.LogError("Current Screen Null");
             return currentScreen;
         }
@@ -337,18 +317,16 @@ namespace VectorViral.GUI
         private void PopulateScreens()
         {
 #if UNITY_2023_1_OR_NEWER
-            screens = new List<MRScreen>(FindObjectsByType<MRScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None));
+            screens = new List<VVScreen>(FindObjectsByType<VVScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None));
 #elif UNITY_2020_1_OR_NEWER
-            screens = new List<MRScreen>(FindObjectsOfType<MRScreen>(true));
+            screens = new List<VVScreen>(FindObjectsOfType<VVScreen>(true));
 #else
-            screens = new List<MRScreen>(FindObjectsOfType(typeof(MRScreen)) as MRScreen[]);
+            screens = new List<VVScreen>(FindObjectsOfType(typeof(VVScreen)) as VVScreen[]);
 #endif
         }
 #endif
     }
-    // end of class
 
-
-    // Backwards compatibility alias
+    // Backward-compatibility alias
     public class MRGUIManager : VVGUIManager { }
-}
+}

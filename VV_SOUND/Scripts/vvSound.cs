@@ -7,7 +7,7 @@ namespace VectorViral.Sound
 
     [CreateAssetMenu(fileName = "mrSound", menuName = "VV Package/VV Sound/Create Sound")]
     [System.Serializable]
-    public class MRSound : ScriptableObject
+    public class vvSound : ScriptableObject
     {
         public string uniqueName;
         public List<AudioClip> clips;

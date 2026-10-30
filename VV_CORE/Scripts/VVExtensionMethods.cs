@@ -1,13 +1,16 @@
- 
-using System;
-using System.Collections;
+// ==============================================================================
+// VVPackage - Modular UI, Sound & Core Framework
+// Copyright (c) 2024-2026 VECTOR VIRAL (SMC-PRIVATE) LIMITED
+// Licensed under the MIT Open Source License.
+// ==============================================================================
+
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+using VectorViral.Tweening;
 
 namespace VectorViral.Core
 {
-    public static class MRExtensionMethods
+    public static class VVExtensionMethods
     {
         public static void ResetTransformation(this Transform trans)
         {
@@ -67,7 +70,7 @@ namespace VectorViral.Core
             int loop = -1;
             if (once)
                 loop = 1;
-            DOTween.Sequence()
+            VVTween.Sequence()
                 .Append(
                     obj.transform.DOScale(toScale, duration)
                 )
@@ -81,7 +84,7 @@ namespace VectorViral.Core
             int loop = -1;
             if (once)
                 loop = 1;
-            DOTween.Sequence()
+            VVTween.Sequence()
                 .Append(
                     obj.transform.DOScale(toScale, duration)
                 )
@@ -99,14 +102,6 @@ namespace VectorViral.Core
             path[2] = endPoint;
 
             obj.transform.DOPath(path, duration, PathType.CatmullRom).SetEase(Ease.OutQuad).OnComplete(() => Debug.Log("Movement completed."));
-
-            //DOTween.Sequence()
-            //    .Append(
-            //        obj.transform.DOLocalMove(toPos1, duration1).SetEase(ease)
-            //    )
-            //    .Append(
-            //        obj.transform.DOLocalMove(toPos2, duration2).SetEase(ease)
-            //    );
         }
     }
 }
