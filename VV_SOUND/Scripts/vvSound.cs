@@ -1,11 +1,16 @@
- 
+// ==============================================================================
+// VVPackage - Modular UI, Sound & Core Framework
+// Copyright (c) 2024-2026 VECTOR VIRAL (SMC-PRIVATE) LIMITED
+// Licensed under the MIT Open Source License.
+// ==============================================================================
+
 namespace VectorViral.Sound
 {
     using System.Collections;
     using System.Collections.Generic;
     using UnityEngine;
 
-    [CreateAssetMenu(fileName = "mrSound", menuName = "VV Package/VV Sound/Create Sound")]
+    [CreateAssetMenu(fileName = "vvSound", menuName = "VV Package/VV Sound/Create VV Sound")]
     [System.Serializable]
     public class vvSound : ScriptableObject
     {
@@ -17,4 +22,3 @@ namespace VectorViral.Sound
         public float pitch = 1;
     }
 }
- 
