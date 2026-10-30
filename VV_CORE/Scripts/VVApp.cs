@@ -34,8 +34,4 @@ namespace VectorViral.Core
             // A new user, all default user things go here, e.g if in a new install, you want to start with some coins;
         }
     }
-
-    // Backward-compatibility alias for existing code
-    [System.Serializable]
-    public class MRApp : VVApp { }
 }

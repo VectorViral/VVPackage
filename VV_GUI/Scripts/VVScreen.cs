@@ -12,7 +12,6 @@ namespace VectorViral.GUI
     using VectorViral.Tweening;
 
     public delegate void VVScreenEvent();
-    public delegate void MRScreenEvent();
 
     public abstract class VVScreen : MonoBehaviour
     {
@@ -45,14 +44,6 @@ namespace VectorViral.GUI
         public void RaiseVVScreenEvent(VVScreenEvent screenEvent, float waitTime)
         {
             StartCoroutine(CallCompleteEventWorker(screenEvent, waitTime));
-        }
-
-        /// <summary>
-        /// Backward-compatible alias for existing MR screen implementations
-        /// </summary>
-        public void RaiseMRScreenEvent(MRScreenEvent screenEvent, float waitTime)
-        {
-            StartCoroutine(CallCompleteEventWorker(() => screenEvent?.Invoke(), waitTime));
         }
 
         IEnumerator CallCompleteEventWorker(VVScreenEvent screenEvent, float waitTime)
@@ -101,20 +92,6 @@ namespace VectorViral.GUI
 
             yield return new WaitForSeconds(finalWait);
             screenEvent?.Invoke();
-        }
-    }
-
-    // Backward-compatibility base class
-    public abstract class MRScreen : VVScreen
-    {
-        public override void PreHide(VVScreenEvent onComplete)
-        {
-            PreHide(() => onComplete?.Invoke());
-        }
-
-        public virtual void PreHide(MRScreenEvent onComplete)
-        {
-            RaiseMRScreenEvent(onComplete, 0f);
         }
     }
 }

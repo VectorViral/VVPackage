@@ -118,18 +118,5 @@ namespace VectorViral.Core
             return string.Empty;
         }
     }
-
-    // Backward-compatibility alias
-    public static class MREditorUtilities
-    {
-        public static GUIStyle GetLabelStyle(GUIStyle gs, Color color, int fontSize = 12, int paddingLeft = 0) => VVEditorUtilities.GetLabelStyle(gs, color, fontSize, paddingLeft);
-        public static void CreateIconButton(Texture2D icon, int width, int height, UnityAction onClicked) => VVEditorUtilities.CreateIconButton(icon, width, height, onClicked);
-        public static void DrawColoredSeparator(Color color, float height) => VVEditorUtilities.DrawColoredSeparator(color, height);
-        public static List<T> GetAssetsByType<T>(string optionalNamespace = "") where T : Object => VVEditorUtilities.GetAssetsByType<T>(optionalNamespace);
-        public static List<Object> GetAssetsByFilter(string filter) => VVEditorUtilities.GetAssetsByFilter(filter);
-        public static bool IsStringInLines(List<string> lines, string s) => VVEditorUtilities.IsStringInLines(lines, s);
-        public static List<string> GetAssetGuidsByFilter(string filter) => VVEditorUtilities.GetAssetGuidsByFilter(filter);
-        public static string GetAssetPathByFilter(string filter) => VVEditorUtilities.GetAssetPathByFilter(filter);
-    }
 }
 #endif

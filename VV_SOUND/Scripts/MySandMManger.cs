@@ -1,12 +1,14 @@
 using VectorViral.Core;
 using VectorViral.Sound;
 using UnityEngine;
+
 public class MySandMManger : MonoBehaviour
 {
     public static MySandMManger instance;
 
-    public AudioClip MenuBg_Sound,GamePlay_Sound;
-    public AudioSource musicSource,hoverboardSource;
+    public AudioClip MenuBg_Sound, GamePlay_Sound;
+    public AudioSource musicSource, hoverboardSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -18,27 +20,25 @@ public class MySandMManger : MonoBehaviour
             Destroy(instance);
         }
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-
-
-        musicSource.volume = MRAppDataManager.Instance.GetAppInstance().musicVolume;
-        hoverboardSource.volume = MRAppDataManager.Instance.GetAppInstance().soundVolume;
+        musicSource.volume = VVAppDataManager.Instance.GetAppInstance().musicVolume;
+        hoverboardSource.volume = VVAppDataManager.Instance.GetAppInstance().soundVolume;
     }
 
-
-    // set Values
+    // Set Values
     public void SoundSlider_Func(float sValue)
     {
-        MRAppDataManager.Instance.GetAppInstance().soundVolume = sValue;
-        MRAppDataManager.Instance.SaveAppData();
+        VVAppDataManager.Instance.GetAppInstance().soundVolume = sValue;
+        VVAppDataManager.Instance.SaveAppData();
         hoverboardSource.volume = sValue;
     }
+
     public void MusicSlider_Func(float mValue)
     {
-        MRAppDataManager.Instance.GetAppInstance().musicVolume = mValue;
-        MRAppDataManager.Instance.SaveAppData();
+        VVAppDataManager.Instance.GetAppInstance().musicVolume = mValue;
+        VVAppDataManager.Instance.SaveAppData();
 
         musicSource.volume = mValue;
         hoverboardSource.volume = mValue;
@@ -52,33 +52,38 @@ public class MySandMManger : MonoBehaviour
     }
 
     // Sounds Funcs
-
     public void ButtonClickSound_Func()
     {
-        MRSoundManager.Instance.Play(vvSounds.ButtonClick);
+        VVSoundManager.Instance.Play(vvSounds.ButtonClick);
     }
+
     public void DriftSound_Func()
     {
-        MRSoundManager.Instance.Play(vvSounds.DriftSound);
+        VVSoundManager.Instance.Play(vvSounds.DriftSound);
     }
+
     public void GameOverSound_Func()
     {
-        MRSoundManager.Instance.Play(vvSounds.GameOver_Sound);
+        VVSoundManager.Instance.Play(vvSounds.GameOver_Sound);
     }
+
     public void PopUpOpenSound_Func()
     {
-        MRSoundManager.Instance.Play(vvSounds.PopUp_Sound);
+        VVSoundManager.Instance.Play(vvSounds.PopUp_Sound);
     }
+
     public void PopUpCloseSound_Func()
     {
-        MRSoundManager.Instance.Play(vvSounds.PopUpClose_Sound);
+        VVSoundManager.Instance.Play(vvSounds.PopUpClose_Sound);
     }
+
     public void VinylPickSound_Func()
     {
-        MRSoundManager.Instance.Play(vvSounds.Vinyl_Sound);
+        VVSoundManager.Instance.Play(vvSounds.Vinyl_Sound);
     }
+
     public void boostersClickSound_Func()
     {
-        MRSoundManager.Instance.Play(vvSounds.BoostersClick);
+        VVSoundManager.Instance.Play(vvSounds.BoostersClick);
     }
 }

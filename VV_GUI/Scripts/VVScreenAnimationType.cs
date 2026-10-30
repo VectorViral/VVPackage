@@ -14,14 +14,4 @@ namespace VectorViral.GUI
         Drop,
         Rise,
     }
-
-    // Backward-compatibility alias
-    public enum MRScreenAnimationType
-    {
-        None,
-        RTL,
-        LTR,
-        Drop,
-        Rise,
-    }
 }

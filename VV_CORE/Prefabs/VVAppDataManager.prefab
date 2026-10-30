@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6236224482274715497}
   - component: {fileID: 1049441734429788699}
   m_Layer: 0
-  m_Name: MRAppDataManager
+  m_Name: VVAppDataManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

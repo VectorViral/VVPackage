@@ -91,7 +91,4 @@ namespace VectorViral.Core
             return this.app;
         }
     }
-
-    // Backward-compatibility alias for existing scripts and prefabs
-    public class MRAppDataManager : VVAppDataManager { }
 }

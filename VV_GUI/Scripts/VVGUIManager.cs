@@ -327,6 +327,4 @@ namespace VectorViral.GUI
 #endif
     }
 
-    // Backward-compatibility alias
-    public class MRGUIManager : VVGUIManager { }
 }
